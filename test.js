@@ -15,14 +15,20 @@ app.get("/", (req, res) => {
 });
 
 // POST route (webhook)
-app.use("/webhook", (req, res) => {
-  console.log("Headers:", req.headers);
-  console.log("Body:", req.body);
+app.post("/webhook", (req, res) => {
+  console.log("\n========== WEBHOOK RECEIVED ==========");
+
+  console.log("\nHeaders:");
+  console.log(JSON.stringify(req.headers, null, 2));
+
+  console.log("\nComplete Body:");
+  console.log(JSON.stringify(req.body, null, 2));
+
+  console.log("\n======================================\n");
 
   res.status(200).json({
     success: true,
     message: "Webhook received",
-    data: req.body,
   });
 });
 
